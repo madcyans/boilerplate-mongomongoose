@@ -39,7 +39,7 @@ const createManyPeople = (arrayOfPeople, done) => {
 
 const findPeopleByName = (personName, done) => {
   // Use the Model to find people by name
-  Model.find({ name: personName }, (err, people) => {
+  Person.find({ name: personName }, (err, people) => {
     if (err) return done(err); // If there's an error, pass it to done.
     done(null, people);          // On success, pass null for error and the data.
   });
