@@ -30,7 +30,6 @@ const createAndSavePerson = (done) => {
 };
 
 
-
 const createManyPeople = (arrayOfPeople, done) => {
   Person.create(arrayOfPeople, (err, people) => {
     if (err) return done(err); // If there's an error, pass it to done.
@@ -39,7 +38,11 @@ const createManyPeople = (arrayOfPeople, done) => {
 };
 
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  // Use the Model to find people by name
+  Model.find({ name: personName }, (err, people) => {
+    if (err) return done(err); // If there's an error, pass it to done.
+    done(null, people);          // On success, pass null for error and the data.
+  });
 };
 
 const findOneByFood = (food, done) => {
