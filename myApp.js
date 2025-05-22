@@ -46,7 +46,11 @@ const findPeopleByName = (personName, done) => {
 };
 
 const findOneByFood = (food, done) => {
-  done(null /*, data*/);
+  // Use the Model to find one person by food
+  Person.findOne({ favoriteFoods: food }, (err, person) => {
+    if (err) return done(err); // If there's an error, pass it to done.
+    done(null, person);          // On success, pass null for error and the data.
+  });
 };
 
 const findPersonById = (personId, done) => {
