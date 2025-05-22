@@ -54,13 +54,24 @@ const findOneByFood = (food, done) => {
 };
 
 const findPersonById = (personId, done) => {
-  done(null /*, data*/);
+  // Use the Model to find a person by ID
+  Person.findById(personId, (err, person) => {
+    if (err) return done(err); // If there's an error, pass it to done.
+    done(null, person);          // On success, pass null for error and the data.
+  });
+  
 };
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
-
-  done(null /*, data*/);
+  Person.findById(personId, (err, person) => { 
+    if (err) return done(err); // If there's an error, pass it to done.
+    person.favoriteFoods.push(foodToAdd); // Add food to the person's favorite foods
+    person.save((err, updatedPerson) => {
+      if (err) return done(err); // If there's an error, pass it to done.
+      done(null, updatedPerson); // On success, pass null for error and the updated person.
+    });
+  });
 };
 
 const findAndUpdate = (personName, done) => {
