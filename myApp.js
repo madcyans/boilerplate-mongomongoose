@@ -85,8 +85,6 @@ const findAndUpdate = (personName, done) => {
       done(null, updatedPerson);  // On success, pass null for error and the updated person.
     }
   );
-
-  done(null /*, data*/);
 };
 
 const removeById = (personId, done) => {
