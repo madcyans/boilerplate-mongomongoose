@@ -95,8 +95,12 @@ const removeById = (personId, done) => {
 
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
-
-  done(null /*, data*/);
+  // Use the Model to remove many people by name
+  // The remove method is deprecated, use deleteMany instead
+  Person.remove({ name: nameToRemove }, (err, data) => {
+    if (err) return done(err); // If there's an error, pass it to done.
+    done(null, data);          // On success, pass null for error and the data.
+  });
 };
 
 const queryChain = (done) => {
