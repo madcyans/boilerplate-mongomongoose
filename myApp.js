@@ -32,7 +32,7 @@ const createAndSavePerson = (done) => {
 
 
 const createManyPeople = (arrayOfPeople, done) => {
-  Model.create(arrayOfPeople, (err, people) => {
+  Person.create(arrayOfPeople, (err, people) => {
     if (err) return done(err); // If there's an error, pass it to done.
     done(null, people);          // On success, pass null for error and the data.
   });
