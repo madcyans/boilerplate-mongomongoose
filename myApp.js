@@ -59,7 +59,6 @@ const findPersonById = (personId, done) => {
     if (err) return done(err); // If there's an error, pass it to done.
     done(null, person);          // On success, pass null for error and the data.
   });
-  
 };
 
 const findEditThenSave = (personId, done) => {
@@ -88,7 +87,10 @@ const findAndUpdate = (personName, done) => {
 };
 
 const removeById = (personId, done) => {
-  done(null /*, data*/);
+  findByIdAndRemove(personId, (err, data) => {
+    if (err) return done(err); // If there's an error, pass it to done.
+    done(null, data);          // On success, pass null for error and the data.
+  } );
 };
 
 const removeManyPeople = (done) => {
