@@ -12,8 +12,21 @@ const personSchema = new mongoose.Schema({
 
 const Person = mongoose.model('Person', personSchema);
 
+// This function should create and save a new person
+// and pass the new PERSON DOCUMENT to the callback
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  //create a new person model instance
+  const person = new Person({
+    name: "John Doe",
+    age: 30,
+    favoriteFoods: ["Pizza", "Burger"]
+  });
+
+  // Save the new person(document.save) to the database.
+  person.save((err, data) => {
+    if (err) return done(err); // If there's an error, pass it to done.
+    done(null, data);          // On success, pass null for error and the data.
+  });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
